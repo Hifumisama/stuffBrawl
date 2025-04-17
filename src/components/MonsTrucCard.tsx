@@ -2,6 +2,7 @@
 
 import { MonsTruc } from '../data/monsTrucs';
 import { useState } from 'react';
+import Image from 'next/image';
 
 interface MonsTrucCardProps {
   monsTruc: MonsTruc;
@@ -33,9 +34,14 @@ const getTypeColor = (type: string) => {
 
 const MonsTrucCard = ({ monsTruc }: MonsTrucCardProps) => {
   const [isFlipped, setIsFlipped] = useState(false);
+  const [imageError, setImageError] = useState(false);
 
   const handleClick = () => {
     setIsFlipped(!isFlipped);
+  };
+
+  const handleImageError = () => {
+    setImageError(true);
   };
 
   return (
@@ -47,15 +53,21 @@ const MonsTrucCard = ({ monsTruc }: MonsTrucCardProps) => {
         onClick={handleClick}
       >
         {/* Face avant */}
-        <div className={`absolute inset-0 w-full h-full bg-white rounded-lg shadow-lg p-4 transition-opacity duration-700 ${
+        <div className={`absolute inset-0 w-full h-full bg-white text-black rounded-lg shadow-lg p-4 transition-opacity duration-700 ${
           isFlipped ? 'opacity-0' : 'opacity-100'
         }`}>
-          <img 
-            src={monsTruc.image} 
-            alt={monsTruc.name}
-            className="w-full h-48 object-contain mb-2"
-          />
-          <h3 className="text-xl font-bold mb-1">{monsTruc.name}</h3>
+          <div className="relative w-full h-48 mb-2">
+            <Image 
+              src={imageError ? '/images/monstrucs/point d interrogation.jpg' : monsTruc.image}
+              alt={monsTruc.name}
+              className="object-contain"
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              onError={handleImageError}
+              priority
+            />
+          </div>
+          <h3 className="text-xl font-bold mb-1 text-black">{monsTruc.name}</h3>
           <div className="flex gap-2 mb-3">
             {monsTruc.types.map((type) => (
               <span 
@@ -83,17 +95,17 @@ const MonsTrucCard = ({ monsTruc }: MonsTrucCardProps) => {
         </div>
 
         {/* Face arrière */}
-        <div className={`absolute inset-0 w-full h-full bg-white rounded-lg shadow-lg p-4 [transform:rotateY(180deg)] transition-opacity duration-700 ${
+        <div className={`absolute inset-0 w-full h-full bg-white text-black rounded-lg shadow-lg p-4 [transform:rotateY(180deg)] transition-opacity duration-700 ${
           isFlipped ? 'opacity-100' : 'opacity-0'
         }`}>
           <div className="flex justify-between items-center mb-3">
-            <h3 className="text-xl font-bold">{monsTruc.name}</h3>
+            <h3 className="text-xl font-bold text-black">{monsTruc.name}</h3>
             <span className="text-sm font-semibold text-purple-600">{monsTruc.rarity}</span>
           </div>
-          <p className="text-sm mb-3">{monsTruc.description}</p>
+          <p className="text-sm mb-3 text-black">{monsTruc.description}</p>
           <div className="space-y-2">
             <div className="flex justify-between items-center">
-              <span className="text-sm">❤️ HP</span>
+              <span className="text-sm text-black">❤️ HP</span>
               <div className="flex items-center">
                 <div className="w-32 h-2 bg-gray-200 rounded mr-2">
                   <div 
@@ -101,11 +113,11 @@ const MonsTrucCard = ({ monsTruc }: MonsTrucCardProps) => {
                     style={{ width: `${(monsTruc.stats.hp / 150) * 100}%` }}
                   />
                 </div>
-                <span className="w-8 text-right text-sm">{monsTruc.stats.hp}</span>
+                <span className="w-8 text-right text-sm text-black">{monsTruc.stats.hp}</span>
               </div>
             </div>
             <div className="flex justify-between items-center">
-              <span className="text-sm">⚔️ Attaque</span>
+              <span className="text-sm text-black">⚔️ Attaque</span>
               <div className="flex items-center">
                 <div className="w-32 h-2 bg-gray-200 rounded mr-2">
                   <div 
@@ -113,11 +125,11 @@ const MonsTrucCard = ({ monsTruc }: MonsTrucCardProps) => {
                     style={{ width: `${(monsTruc.stats.attack / 100) * 100}%` }}
                   />
                 </div>
-                <span className="w-8 text-right text-sm">{monsTruc.stats.attack}</span>
+                <span className="w-8 text-right text-sm text-black">{monsTruc.stats.attack}</span>
               </div>
             </div>
             <div className="flex justify-between items-center">
-              <span className="text-sm">🛡️ Défense</span>
+              <span className="text-sm text-black">🛡️ Défense</span>
               <div className="flex items-center">
                 <div className="w-32 h-2 bg-gray-200 rounded mr-2">
                   <div 
@@ -125,11 +137,11 @@ const MonsTrucCard = ({ monsTruc }: MonsTrucCardProps) => {
                     style={{ width: `${(monsTruc.stats.defense / 100) * 100}%` }}
                   />
                 </div>
-                <span className="w-8 text-right text-sm">{monsTruc.stats.defense}</span>
+                <span className="w-8 text-right text-sm text-black">{monsTruc.stats.defense}</span>
               </div>
             </div>
             <div className="flex justify-between items-center">
-              <span className="text-sm">💨 Vitesse</span>
+              <span className="text-sm text-black">💨 Vitesse</span>
               <div className="flex items-center">
                 <div className="w-32 h-2 bg-gray-200 rounded mr-2">
                   <div 
@@ -137,7 +149,7 @@ const MonsTrucCard = ({ monsTruc }: MonsTrucCardProps) => {
                     style={{ width: `${(monsTruc.stats.speed / 100) * 100}%` }}
                   />
                 </div>
-                <span className="w-8 text-right text-sm">{monsTruc.stats.speed}</span>
+                <span className="w-8 text-right text-sm text-black">{monsTruc.stats.speed}</span>
               </div>
             </div>
           </div>
