@@ -1,4 +1,4 @@
-import MonsTrucGrid from "@/components/MonsTrucGrid";
+import MonsTrucGrid from "components/MonsTrucGrid";
 
 
 export default function CollectionPage() {

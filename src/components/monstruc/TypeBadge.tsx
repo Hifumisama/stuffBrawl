@@ -1,11 +1,12 @@
-import { MonsThingType } from '@/data/monsTrucs';
+
+import { MonsTrucType } from 'data/monsTrucs';
 import styles from './TypeBadge.module.css';
 
 interface TypeBadgeProps {
-  type: MonsThingType;
+  type: MonsTrucType;
 }
 
-const typeColors: Record<MonsThingType, string> = {
+const typeColors: Record<MonsTrucType, string> = {
   feu: '#FF6B6B',
   glace: '#4ECDC4',
   électrique: '#FFD93D',
@@ -17,7 +18,7 @@ const typeColors: Record<MonsThingType, string> = {
   horrifique: '#E74C3C'
 };
 
-const typeIcons: Record<MonsThingType, string> = {
+const typeIcons: Record<MonsTrucType, string> = {
   feu: '🔥',
   glace: '❄️',
   électrique: '⚡',

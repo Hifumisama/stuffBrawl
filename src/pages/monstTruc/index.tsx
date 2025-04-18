@@ -1,7 +1,8 @@
 import { GetStaticProps } from 'next';
-import { MonsTruc } from '@/data/monsTrucs';
+import { MonsTruc } from 'data/monsTrucs';
 import styles from './index.module.css';
-import MonstrucCard from '@/components/monstruc/MonstrucCard';
+import MonsTrucCard from 'components/MonsTrucCard';
+
 
 interface MonstrucsListProps {
   monstrucs: MonsTruc[];
@@ -13,10 +14,9 @@ export default function MonstrucsList({ monstrucs }: MonstrucsListProps) {
       <h1 className={styles.title}>Liste des Monstrucs</h1>
       <div className={styles.grid}>
         {monstrucs.map(monstruc => (
-          <MonstrucCard
+          <MonsTrucCard
             key={monstruc.id} 
-            monstruc={monstruc} 
-            compact={true}
+            monsTruc={monstruc} 
           />
         ))}
       </div>

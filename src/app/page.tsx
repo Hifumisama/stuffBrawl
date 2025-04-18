@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import RetroMenu from '@/components/RetroMenu';
+import RetroMenu from 'components/RetroMenu';
 
 export default function Home() {
   return (
