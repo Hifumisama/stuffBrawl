@@ -38,7 +38,7 @@ export default function RetroMenu() {
           fontFamily: 'var(--font-pixel-mania)'
         }}
       >
-        STUFFBRAWL
+        MONSTRUC
       </h1>
 
       <div className="border-4 border-yellow-400 p-8 bg-slate-900/80 rounded-lg shadow-lg w-120">
